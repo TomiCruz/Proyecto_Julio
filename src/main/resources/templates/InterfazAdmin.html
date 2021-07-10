@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link th:href="@{../style.css}" rel="stylesheet" type="text/css" href="../static/style.css">
+	<link th:href="@{../bootstrap.css}" rel="stylesheet" type="text/css" href="../static/bootstrap.css">
+	<meta charset=UTF-8>
+<title>Admin</title>
+</head>
+<body class="text-center">
+	<div class="form-group">
+		<form action="ingresarUsuario" class="form-group">
+			<input type="submit" class="btn btn-outline-primary"
+				value="Agregar Usuario">
+		</form>
+		<form action="formulario" class="form-group">
+			<input type="submit" class="btn btn-outline-primary"
+				value="Mostrar Usuarios">
+		</form>
+		<form action="login" class="form-group" id="formCerrarSesion">
+			<input type="submit" class="btn btn-outline-primary"
+				value="Cerrar Sesion">
+		</form>
+	</div>
+</body>

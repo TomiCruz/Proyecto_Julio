@@ -5,22 +5,27 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.2</version>
+		<version>2.5.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ar.edu.unju.edm</groupId>
-	<artifactId>ProyectoFinal</artifactId>
+	<artifactId>Proyecto_Junio</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ProyectoFinal</name>
-	<description>Proyecto</description>
+	<name>Proyecto_Junio</name>
+	<description>Proyect o</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
-<dependencies>
+	<dependencies>
 		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -48,27 +53,27 @@
             <artifactId>bootstrap</artifactId>
             <version>4.5.0</version>
         </dependency>
+        
          <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>jquery</artifactId>
             <version>3.5.1</version>
         </dependency>
+        <!--  https://mvnrepository.com/artifact/org.webjars/popper.js -->
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>popper.js</artifactId>
             <version>1.16.0</version>
         </dependency>
+        
          <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>font-awesome</artifactId>
             <version>5.11.2</version>
-        </dependency>      
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
-		</dependency>
+        </dependency>
+      
 	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -77,4 +82,5 @@
 			</plugin>
 		</plugins>
 	</build>
+
 </project>
