@@ -16,10 +16,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import org.springframework.stereotype.Component;
 
-//import org.springframework.stereotype.Component;
-
-@Component
 @Entity
+@Component
 public class Usuario implements Serializable{
 	/**
 	 * 

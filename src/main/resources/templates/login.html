@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container">
-<form class="form" th:object="${usuarioDelForm}" th:action="@{/ingresarUsuario}" method="post">
+<form class="form" th:object="${usuarioDelForm}" th:action="@{/guardarUsuario}" method="post">
   <div class="form-group">
     <label for="dni">DNI</label>
     <input type="text" class="form-control" id="dni" aria-describedby="dniHelp" placeholder="Ingrese DNI" th:field="${usuarioDelForm.dni}">    

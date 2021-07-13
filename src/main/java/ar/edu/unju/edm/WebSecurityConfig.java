@@ -24,8 +24,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers(resources).permitAll().antMatchers("/", "/home").permitAll()
-				.antMatchers("/Lusuarios", "/guardarUsuario", "/cargarUsuario", "/EDusuario/{id}",
-				"/Elusuario/{id}", "/Musuario/", "/cancelar").hasAuthority("Admin")
+		.antMatchers("/Lusuarios", "/guardarUsuario", "/cargarUsuario", "/EDusuario/{id}",
+				"/Elusuario/{id}", "/Musuario/", "/cancelar","/cargarProducto/","/buscarProducto"
+				,"/cargarProducto", "/guardarProducto", "/").hasAuthority("Admin")
+        .antMatchers("/").hasAuthority("Client")
 				.and().formLogin().loginPage("/login").permitAll()
 				.successHandler(autenticacion).failureUrl("/login?error=true").usernameParameter("nombreUsuario")
 				.passwordParameter("password").and().logout().permitAll().logoutSuccessUrl("/login?logout");

@@ -26,6 +26,8 @@ public class AplicacionController {
 	@GetMapping({"/login" , "/"})
 	public String obtenerLogin(Model model) {
 		
+		
+		
 		return "login";
 	}
 	
