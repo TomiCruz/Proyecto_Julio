@@ -1,8 +1,9 @@
 package ar.edu.unju.edm.service;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unju.edm.modelo.Usuario;
@@ -16,59 +17,44 @@ public class IUsuarioServiceImp implements IUsuarioService{
 	IUsuarioRepository iUsuario;
 
 	@Override
-	public void crear(Usuario unUsuario) {
-		// TODO Auto-generated method stub		
-		iUsuario.save(unUsuario);
-	}
-	
-	@Override
-	public Usuario modificar() {
+	public void guardar(Usuario usuario) {
 		// TODO Auto-generated method stub
-		return null;
+		String pw = usuario.getPassword();
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
+		usuario.setPassword(bCryptPasswordEncoder.encode(pw));
+		iUsuario.save(usuario);
 	}
 
 	@Override
-	public void eliminar() {
+	public void eliminar(Long id) {
 		// TODO Auto-generated method stub
-		
+		iUsuario.deleteById(id);
 	}
 
-	
 	@Override
-	public Optional<Usuario> encontrarUsuario(Long id) {
+	public Usuario modificar(Usuario unUsuario) throws Exception {
+		Usuario usuarioB = encontrarUsuario(unUsuario.getId());
+		mapearUsuario(unUsuario, usuarioB);
+		return iUsuario.save(usuarioB);
+	}
+//Long id, String dni, String nombre, String apellido,String tipo, String password
+	public void mapearUsuario(Usuario desde, Usuario hacia) {
+		hacia.setDni(desde.getDni());
+		hacia.setNombre(desde.getNombre());
+		hacia.setApellido(desde.getApellido());
+		hacia.setTipo(desde.getTipo());
+	}
+
+	@Override
+	public Usuario encontrarUsuario(Long id) throws Exception {
 		// TODO Auto-generated method stub
-		Optional<Usuario> usuarioEncontrado = iUsuario.findById(id);
-		return usuarioEncontrado;
+		return iUsuario.findById(id).orElseThrow(() -> new Exception("Error"));
+
 	}
 
-
 	@Override
-	public Iterable<Usuario> listarTodos() {
+	public List<Usuario> listarUsuario() {
 		// TODO Auto-generated method stub
-		return iUsuario.findAll();
+		return iUsuario.listarUsuarios();
 	}
-
-
-	@Override
-	public Usuario encontrarUsuarioDni(Usuario usuario) throws Exception {		
-		Usuario usuarioEncontrado = iUsuario.findByDni(usuario.getDni()).orElseThrow(()-> new Exception("El Usuario no Existe"));
-		if (!usuarioEncontrado.getPassword().equals(usuario.getPassword())) {
-			usuarioEncontrado = null;
-		}		
-		return usuarioEncontrado;
-	}
-
-	@Override
-	public String redirigirUsuario(Usuario usuario) {
-		// TODO Auto-generated method stub
-		String pagina = "";
-		if (usuario.getTipo().equals("Cliente")) {
-			pagina = "/InterfazCliente";
-		}else {
-				pagina = "/InterfazAdmin";
-			}
-		
-		return pagina;
-	}		
-		
 }

@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+	<link th:href="@{../style.css}" rel="stylesheet" type="text/css" href="../static/style.css">
+	<link th:href="@{../bootstrap.css}" rel="stylesheet" type="text/css" href="../static/bootstrap.css">
+	<meta charset=UTF-8>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Cliente</title>
 </head>
-<body>
-
+<body class="text-center">
+	<div class="form-group" >
+		<form action="login" class="form-group" id="formCerrarSesion">
+			<input type="submit" class="btn btn-outline-primary" value="Regresar">
+		</form>
+	</div>
 </body>
 </html>

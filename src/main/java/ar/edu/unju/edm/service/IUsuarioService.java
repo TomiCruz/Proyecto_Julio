@@ -1,17 +1,18 @@
 package ar.edu.unju.edm.service;
 
-import java.util.Optional;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
 
 import ar.edu.unju.edm.modelo.Usuario;
 
+@Service
 public interface IUsuarioService {
 
-	public void crear(Usuario unUsuario);
-	public Usuario modificar();
-	public void eliminar();
-	public Iterable<Usuario> listarTodos();
-	public Optional<Usuario> encontrarUsuario(Long id);
-	public Usuario encontrarUsuarioDni(Usuario usuario) throws Exception;	
-	public String redirigirUsuario(Usuario usuario);	
+	public void guardar( Usuario unUsuario );
+	public List<Usuario> listarUsuario();
+	public void eliminar(Long id);
+	public Usuario modificar(Usuario unUsuario) throws Exception;
+	public Usuario encontrarUsuario(Long id) throws Exception;
 	
 }
