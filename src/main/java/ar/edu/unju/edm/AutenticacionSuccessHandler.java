@@ -19,12 +19,6 @@ import org.springframework.stereotype.Component;
 public class AutenticacionSuccessHandler implements AuthenticationSuccessHandler {
 
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
-	//es un procedimiento donde se busca el suceso de la autenticacion 
-		//3 parametros,la solicitud ,la respuesta y la autenticacion
-		//2 tipo de datos booleanos
-		//colecction (nombre de de tipo de datos) extiende todas las variables ,
-		//es igual a la autenticacion pasada por parametros,solicito el tipo de datos
-		//recorre la coleccion
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
@@ -44,10 +38,10 @@ public class AutenticacionSuccessHandler implements AuthenticationSuccessHandler
 		}
 		//redireccion
 		if(tipoAdmin) {
-			redirectStrategy.sendRedirect(request, response, "/InterfazAdmin");
+			redirectStrategy.sendRedirect(request, response, "/Admin");
 		}else {
 			if(tipoClient) {
-				redirectStrategy.sendRedirect(request, response, "/InterfazClient");
+				redirectStrategy.sendRedirect(request, response, "/Client");
 			}else {
 					throw new IllegalStateException();
 				}

@@ -18,13 +18,13 @@ public class IVentaServiceImp implements IVentaService{
 	@Override
 	public void guardarVenta(Venta unaVenta) {
 		// TODO Auto-generated method stub
-		
+		iVenta.save(unaVenta);
 	}
 
 	@Override
 	public Venta crearVenta() {
 		// TODO Auto-generated method stub
-		return null;
+		return venta;
 	}
 
 	@Override

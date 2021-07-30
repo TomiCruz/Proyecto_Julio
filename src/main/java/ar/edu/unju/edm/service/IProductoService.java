@@ -15,4 +15,5 @@ public interface IProductoService {
 	public Producto modificar(Producto unaProducto) throws Exception;
 	public Producto encontrarProducto(Long id) throws Exception;
 	public Producto buscarProducto(String nombre) throws Exception;
+	
 }

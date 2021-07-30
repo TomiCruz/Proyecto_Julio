@@ -1,4 +1,4 @@
-package ar.edu.unju.edm;
+ package ar.edu.unju.edm;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -19,22 +19,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private AutenticacionSuccessHandler autenticacion;
 
 	String[] resources = new String[] { "/include/**", "/css/**", "/icons/**", "/img/**", "/js/**", "/layer/**",
-			"/webjars/**" };
+			"/webjars/<<**" };
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers(resources).permitAll().antMatchers("/", "/home").permitAll()
-		.antMatchers("/Lusuarios", "/guardarUsuario", "/cargarUsuario", "/EDusuario/{id}",
-				"/Elusuario/{id}", "/Musuario/", "/cancelar","/cargarProducto/","/buscarProducto"
-				,"/cargarProducto", "/guardarProducto", "/").hasAuthority("Admin")
-        .antMatchers("/").hasAuthority("Client")
-				.and().formLogin().loginPage("/login").permitAll()
-				.successHandler(autenticacion).failureUrl("/login?error=true").usernameParameter("nombreUsuario")
-				.passwordParameter("password").and().logout().permitAll().logoutSuccessUrl("/login?logout");
+		http.authorizeRequests()
+		.antMatchers(resources).permitAll()
+		.antMatchers("/","/home").permitAll()
+		.anyRequest().authenticated()
+		.and()
+			.formLogin()
+				.loginPage("/login").permitAll()
+				.successHandler(autenticacion)
+				.failureUrl("/login?error=true")
+				.usernameParameter("dni")
+				.passwordParameter("password")
+				.and()
+			.logout()
+				.permitAll()
+				.logoutSuccessUrl("/login?logout");
 	}
 
 	BCryptPasswordEncoder bCryptPasswordEncoder;
-
+	
 
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
@@ -48,5 +55,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+		//recupera la informacion del usuario que se quiere logear
 	}
 }

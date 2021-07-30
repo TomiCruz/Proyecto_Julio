@@ -2,11 +2,9 @@ package ar.edu.unju.edm.modelo;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,9 +27,9 @@ public class Venta implements Serializable{
 	@Column
 	private Integer idVenta;
 	
-	@ManyToOne
+	@ManyToOne	
 	@JoinColumn(name = "idProducto")
-    private List<Producto> productos;
+    private Producto producto;
 
 	@ManyToOne
     @JoinColumn(name = "idUsuario")
@@ -42,73 +40,101 @@ public class Venta implements Serializable{
     private LocalDate fechaVenta;
 	
 	@Column
-    private float total;
-	
-	
+    private Integer cantidad;
 	
 	public Venta() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Venta(Integer idVenta, List<Producto> productos, Usuario usuario, LocalDate fechaVenta, float total) {
+	
+	
+	public Venta(Integer idVenta, Producto producto, Usuario usuario, LocalDate fechaVenta, Integer cantidad) {
 		super();
 		this.idVenta = idVenta;
-		this.productos = productos;
+		this.producto = producto;
 		this.usuario = usuario;
 		this.fechaVenta = fechaVenta;
-		this.total = total;
+		this.cantidad = cantidad;
 	}
+
+
+
 	
 	public Integer getIdVenta() {
 		return idVenta;
 	}
 
+
+
 	public void setIdVenta(Integer idVenta) {
 		this.idVenta = idVenta;
 	}
 
-	public List<Producto> getProductos() {
-		return productos;
+
+
+	public Producto getProducto() {
+		return producto;
 	}
 
-	public void setProductos(List<Producto> productos) {
-		this.productos = productos;
+
+
+	public void setProducto(Producto producto) {
+		this.producto = producto;
 	}
+
+
 
 	public Usuario getUsuario() {
 		return usuario;
 	}
 
+
+
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 
+
+
 	public LocalDate getFechaVenta() {
 		return fechaVenta;
 	}
+
+
 
 	public void setFechaVenta(LocalDate fechaVenta) {
 		this.fechaVenta = fechaVenta;
 	}
 
 
-	public void setTotal(float total) {
-		this.total = total;
+
+	public Integer getCantidad() {
+		return cantidad;
 	}
+
+
+
+	public void setCantidad(Integer cantidad) {
+		this.cantidad = cantidad;
+	}
+
+
 
 	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((cantidad == null) ? 0 : cantidad.hashCode());
 		result = prime * result + ((fechaVenta == null) ? 0 : fechaVenta.hashCode());
 		result = prime * result + ((idVenta == null) ? 0 : idVenta.hashCode());
-		result = prime * result + ((productos == null) ? 0 : productos.hashCode());
-		result = prime * result + Float.floatToIntBits(total);
+		result = prime * result + ((producto == null) ? 0 : producto.hashCode());
 		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -119,6 +145,11 @@ public class Venta implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Venta other = (Venta) obj;
+		if (cantidad == null) {
+			if (other.cantidad != null)
+				return false;
+		} else if (!cantidad.equals(other.cantidad))
+			return false;
 		if (fechaVenta == null) {
 			if (other.fechaVenta != null)
 				return false;
@@ -129,12 +160,10 @@ public class Venta implements Serializable{
 				return false;
 		} else if (!idVenta.equals(other.idVenta))
 			return false;
-		if (productos == null) {
-			if (other.productos != null)
+		if (producto == null) {
+			if (other.producto != null)
 				return false;
-		} else if (!productos.equals(other.productos))
-			return false;
-		if (Float.floatToIntBits(total) != Float.floatToIntBits(other.total))
+		} else if (!producto.equals(other.producto))
 			return false;
 		if (usuario == null) {
 			if (other.usuario != null)
@@ -142,22 +171,20 @@ public class Venta implements Serializable{
 		} else if (!usuario.equals(other.usuario))
 			return false;
 		return true;
-	}	
-	
-	@Override
-	public String toString() {
-		return "Venta [idVenta=" + idVenta + ", productos=" + productos + ", usuario=" + usuario + ", fechaVenta="
-				+ fechaVenta + ", total=" + total + "]";
 	}
 
-	public Float getTotal() {
-        float t =  0f;
-        for (Producto producto : this.productos) {
-            t += producto.getPrecio()*producto.getCantProductos();
-        }
-        return t;
-    }
+
+
+	@Override
+	public String toString() {
+		return "Venta [idVenta=" + idVenta + ", producto=" + producto + ", usuario=" + usuario + ", fechaVenta="
+				+ fechaVenta + ", cantidad=" + cantidad + "]";
+	}
+
+
+
 	
+
 	
 }
 

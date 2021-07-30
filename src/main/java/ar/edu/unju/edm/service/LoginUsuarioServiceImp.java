@@ -25,7 +25,8 @@ public class LoginUsuarioServiceImp implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String dni) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-		Usuario usuarioEncontrado = iUsuario.findByDNI(dni).orElseThrow(()-> new UsernameNotFoundException("Usuario Invalido"));
+		
+		Usuario usuarioEncontrado = iUsuario.findByDni(dni).orElseThrow(()-> new UsernameNotFoundException("Usuario Invalido"));
 		
 		List<GrantedAuthority> tipos = new ArrayList<>();
 		GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(usuarioEncontrado.getTipo());

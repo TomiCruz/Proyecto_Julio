@@ -26,20 +26,20 @@ public class ProductoController {
 	@GetMapping("/cargarProducto")
 	public String agregarP(Model model) {
 		model.addAttribute("productoF", new Producto());
-		return "Fproducto";
+		return "agregarProducto";
 	}
 	
 	@PostMapping("/guardarProducto")
 	public String guardarP(@ModelAttribute Producto producto, Model model) {
 		productoService.guardar(producto);
 		model.addAttribute("productoF", new Producto());
-		return "redirect:/cargarRegistro"; 
+		return "redirect:/cargarProducto"; 
 	}
 	//Listar producto
 	@GetMapping("/Lproductos")
 	public String mostrarProductos(Model model){
 		model.addAttribute ("productos",productoService.listarProducto());
-		return "Vproductos";	
+		return "listaProductos";	
 	}	
 	
 	//modificar producto	 
@@ -79,7 +79,7 @@ public class ProductoController {
 	@GetMapping("/Elproducto/{id}")
 	public String eliminar(@PathVariable Long id, Model model) {
 			productoService.eliminar(id);
-			return "redirect:/Lproductos";
+			return "redirect:/listaProductos";
 		}
 			
 	//cancelar productos

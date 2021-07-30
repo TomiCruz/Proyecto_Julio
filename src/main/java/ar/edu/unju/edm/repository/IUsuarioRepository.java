@@ -16,6 +16,6 @@ public interface IUsuarioRepository extends CrudRepository<Usuario,Long>{
 	
 	@Query("from Usuario e order by e.id")
 	public List<Usuario> listarUsuarios();
-	public Optional<Usuario> findByDNI(String dni); //busca en una lista de usuarios por dni
+	public Optional<Usuario> findByDni(String dni); //busca en una lista de usuarios por dni
 
 }

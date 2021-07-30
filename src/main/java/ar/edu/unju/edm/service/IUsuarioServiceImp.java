@@ -52,9 +52,10 @@ public class IUsuarioServiceImp implements IUsuarioService{
 
 	}
 
+
 	@Override
 	public List<Usuario> listarUsuario() {
-		// TODO Auto-generated method stub
+		 //TODO Auto-generated method stub
 		return iUsuario.listarUsuarios();
 	}
 }

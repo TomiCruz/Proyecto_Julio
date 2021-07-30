@@ -23,7 +23,7 @@ public class UsuarioController {
 	@GetMapping("/cargarUsuario")
 	public String agregarU(Model model) {
 		model.addAttribute("usuarioF",new Usuario());
-		return "Fusuario";
+		return "agregarUsuario";
 	}
 	
 	@PostMapping("/guardarUsuario")
@@ -35,8 +35,9 @@ public class UsuarioController {
 	
 	@GetMapping("/Lusuarios")
 	public String mostrarUsuarios(Model model){
-		model.addAttribute("usuarios", usuarioService.listarUsuario());
-		return "Vusuarios";	
+		model.addAttribute("usuario", usuarioService.listarUsuario());
+		return "listaUsuarios";	
+		
 	}
 	
 	@GetMapping("/EDusuario/{id}")
@@ -44,7 +45,7 @@ public class UsuarioController {
 		Usuario usuarioEncontrado = usuarioService.encontrarUsuario(id);
 		model.addAttribute("usuarioF", usuarioEncontrado);
 		model.addAttribute("editMode","true");
-		return "Fusuario";
+		return "editarUsuario";
 	}
 	
 	@GetMapping("/Elusuario/{id}")
@@ -52,6 +53,7 @@ public class UsuarioController {
 		usuarioService.eliminar(id);
 		return "redirect:/Lusuarios";
 	}
+	
 	@PostMapping("/Musuario")
 	public String postEditarUsuario(@ModelAttribute("usuarioF") Usuario usuario, BindingResult result, ModelMap model) {
 		if(result.hasErrors()) {

@@ -29,7 +29,7 @@ public class IProductoServiceImp implements IProductoService{
 	
 	@Override
 	public List<Producto> listarProducto() {
-		return iProducto.listarProductos();
+		return iProducto.findAll();//listado de todos los productos
 	}
 
 	@Override
@@ -51,10 +51,11 @@ public class IProductoServiceImp implements IProductoService{
 		hacia.setPrecio(desde.getPrecio());
 		hacia.setDisponibilidad(desde.getDisponibilidad());
 	}
-	
-	@Override
+
+		@Override
 	public Producto buscarProducto(String nombre) throws Exception {
-		return iProducto.findByNombre(nombre).orElseThrow(()-> new Exception("La producto no existe en la base de datos")) ;
+	return iProducto.findByNombre(nombre).orElseThrow(()-> new Exception("La producto no existe en la base de datos")) ;
 	}
 	
 }
+

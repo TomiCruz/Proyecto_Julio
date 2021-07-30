@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{../style.css}" rel="stylesheet" type="text/css" href="../static/style.css">
+	<link th:href="@{../bootstrap.css}" rel="stylesheet" type="text/css" href="../static/bootstrap.css">
+	<meta charset=UTF-8>
+<title>Agregar</title>
+</head>
+<body>
+<div class = "container">
+	<form th:action="${editMode}?@{/Mproducto}:@{/guardarProducto}" th:object = ${productoF} method = "Post">
+	<h2>Nuevo Producto</h2>
+	  		<div>
+				<input type="text" class="form-control" name="Nombre"
+					placeholder="Nombre de Producto" required="required" th:field = "*{nombre}">
+			</div>
+			<div>
+				<input type="text" class="form-control" name="codigo"
+					placeholder="Codigo de Producto" required="required" th:field = "*{codigo}">
+			</div>
+			<div>
+				<input  class="form-control" name="precio"
+					placeholder="Precio del Producto" required="required" th:field = "*{precio}">
+			</div>
+			<div>
+				<input type="text" class="form-control" name="disponibilidad"
+					placeholder="Disponibilidad del Producto" required="required" th:field = "*{disponibilidad}">
+			</div>
+			
+			<button type="submit" class="btn btn-primary">Guardar Producto Nuevo</button>
+</form>
+</div>
+<hr>
+<div>
+<form action="Admin" class="form-group">
+				<input type="submit" class="btn btn-lg btn-primary btn-block btn btn-dark" value="Cancelar">
+		</form>
+</div>
+</body>
+</html>
