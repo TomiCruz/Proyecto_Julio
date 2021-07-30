@@ -4,11 +4,11 @@
     <link th:href="@{../style.css}" rel="stylesheet" type="text/css" href="../static/style.css">
 	<link th:href="@{../bootstrap.css}" rel="stylesheet" type="text/css" href="../static/bootstrap.css">
 	<meta charset=UTF-8>
-<title>Editar</title>
+<title>Agregar</title>
 </head>
 <body>
  <div class = "container">
-<form  th:object=${usuarioF} th:action="@{/EDusuario}" method="post">
+<form  th:object=${usuarioF} th:action="@{/guardarUsuario}" method="post">
 	<h2>Nuevo Usuario</h2>
 	  		
 	  		<div>
@@ -40,9 +40,6 @@
 </div>
 <div>
 <hr>
-<form action="Admin" class="form-group">
-				<input type="submit" class="btn btn-lg btn-primary btn-block" value="Cancelar">
-		</form>
 </div>
 </body>
 </html>

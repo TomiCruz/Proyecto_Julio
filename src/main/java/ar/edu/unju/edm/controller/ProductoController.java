@@ -38,7 +38,7 @@ public class ProductoController {
 	//Listar producto
 	@GetMapping("/Lproductos")
 	public String mostrarProductos(Model model){
-		model.addAttribute ("productos",productoService.listarProducto());
+		model.addAttribute ("producto",productoService.listarProducto());
 		return "listaProductos";	
 	}	
 	
@@ -48,7 +48,7 @@ public class ProductoController {
 		Producto productoEncontrada = productoService.encontrarProducto(id);
 		model.addAttribute("productoF", productoEncontrada);
 		model.addAttribute("editMode","true");
-		return "Fproducto";
+		return "listaProductos";
 	}
 	
 	@PostMapping("/Mproducto")
@@ -79,7 +79,7 @@ public class ProductoController {
 	@GetMapping("/Elproducto/{id}")
 	public String eliminar(@PathVariable Long id, Model model) {
 			productoService.eliminar(id);
-			return "redirect:/listaProductos";
+			return "redirect:/Lproductos";
 		}
 			
 	//cancelar productos

@@ -33,12 +33,14 @@
 			</thead>
 			<tbody>
 
-				<tr th:each="producto:${productos}">
+				<tr th:each="producto:${producto}">
 					<td th:text="${producto.id}"></td>
 					<td th:text="${producto.nombre}"></td>
 					<td th:text="${producto.codigo}"></td>
 					<td th:text="${producto.precio}"></td>
 					<td th:text="${producto.disponibilidad}"></td>
+						<td ><a type="button" class="btn btn-outline-primary" th:href="@{/editarproducto/}+ ${producto.id}" >EDITAR</a></td>
+     				    <td><a type="button" class="btn btn-outline-danger"th:href="@{/Elproducto/}+ ${producto.id}">ELIMINAR</a></td>
 				</tr>
 
 			</tbody>
