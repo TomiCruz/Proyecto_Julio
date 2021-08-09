@@ -8,20 +8,51 @@
 <title>Ventas</title>
 </head>
 <body>
-<div class="container">
-			<div th:each="c : ${producto}">
-				<div class="col-md-4">
-					<div class="card" style="width: 18rem;">
-						<div class="card-body">
-							<h5 class="card-title" th:text="${c.nombre}">Nombre</h5>
-							
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-    <div>      
-       	<table class="table table-success table-striped">
+<div class="col-12">
+        <h2>Vender</h2>
+        
+       
+        <form th:object="${producto}" th:action="@{/agregarVenta}" method="post">
+            <div class="form-group">
+                <label for="codigo">Codigo de barras</label>
+              
+            </div>
+        </form>
+       
+        <h1 th:text="${'Total: ' + cantidad}"></h1>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Codigo</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                  
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="producto : ${producto}">
+                    <td th:text="${producto.nombre}"></td>
+                    <td th:text="${producto.codigo}"></td>
+                    <td th:text="${producto.precio}"></td>
+                    <td th:text="${producto.cantidad}"></td>
+                    <td th:text="${producto.total}"></td>
+                    <td>
+                        
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+  
+
+ </div>
+
+
+	<!--  <table class="table table-success table-striped">
 			<thead  class="thead-dark">
 				<tr>
 					<th scope="col">Codigo</th>
@@ -31,29 +62,24 @@
 					
 				</tr>
 			</thead>
-			
 			<tbody>
 
-				<tr th:each="producto:${producto}">
-					<td th:text="${producto.codigo}"></td>
-					<td th:text="${producto.nombre}"></td>
-					<td th:text="${producto.precio}"></td>
-					<td th:text="${producto.disponibilidad}"></td>
+				<tr th:each="p:${productos}">
+					<td th:text="${p.codigo}"></td>
+					<td th:text="${p.nombre}"></td>
+					<td th:text="${p.precio}"></td>
+					<td th:text="${p.disponibilidad}"></td>
+						
 						
 				</tr>
 
 			</tbody>
 		</table>
-       
-   		<form action="LproductosVenta" class="form-group">
-			<input type="submit" class="btn btn-outline-primary"
-				value="Mostrar Productos">
-		</form>
-		
+	
 		<form action="login" class="form-group" id="formCerrarSesion">
 			<input type="submit" class="btn btn-outline-primary"
 				value="Cerrar Sesion">
 		</form>
-	</div> 
+		-->
 </body>
 </html>

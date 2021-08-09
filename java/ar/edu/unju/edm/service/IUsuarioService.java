@@ -14,6 +14,8 @@ public interface IUsuarioService {
 	public void eliminar(Long id);
 	public Usuario modificar(Usuario unUsuario) throws Exception;
 	public Usuario encontrarUsuario(Long id) throws Exception;
+
+	public Object obtenerTodosUsuarios();
 	
 	
 }

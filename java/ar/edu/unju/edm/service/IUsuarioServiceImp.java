@@ -62,4 +62,10 @@ public class IUsuarioServiceImp implements IUsuarioService{
 		 //TODO Auto-generated method stub
 		return iUsuario.listarUsuarios();
 	}
+
+	@Override
+	public Object obtenerTodosUsuarios() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

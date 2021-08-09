@@ -12,5 +12,5 @@ import ar.edu.unju.edm.modelo.Venta;
 public interface IVentaRepository extends CrudRepository<Venta,Long>{
 	
 	//public List<Venta> listarVenta();
-	public Optional<Venta> findByIdVenta(String idVenta);
+	//public Optional<Venta> findByIdVenta(String idVenta);
 }

@@ -33,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					 "/Admin") 																	
 		.hasAuthority("Admin")
 		
-		.antMatchers("/Client","/producto/ventas","/producto/vender/{id}","/LproductosVenta") 
+		.antMatchers("/Client","/agregarVenta","/producto/vender/{id}","/LproductosVenta") 
 		.hasAuthority("Client")
 		
 						

@@ -6,53 +6,25 @@
 	<meta charset=UTF-8>
 <title>Ventas</title>
 </head>
-<body>
- <div class="col-12">
-        <h2>Ventas</h2>
-        <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
-             th:text="${mensaje}"
-             class="alert">
-        </div>
-        <a class="btn btn-success mb-2" th:href="@{/producto/vender}">Agregar</a>
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Total</th>
-                    <th>Productos</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="venta : ${ventas}">
-                    <td th:text="${venta.fechaYHora}"></td>
-                    <td th:text="${venta.total}"></td>
-                    <td>
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>CÃ³digo de barras</th>
-                                <th>Cantidad vendida</th>
-                                <th>Precio</th>
-                                <th>Total</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="producto : ${venta.producto}">
-                                <td th:text="${producto.nombre}"></td>
-                                <td th:text="${producto.codigo}"></td>
-                                <td th:text="${producto.cantidad}"></td>
-                                <td th:text="${producto.precio}"></td>
-                                <td th:text="${producto.total}"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-          </div>
+<body><h2>HOLA</h2>
+	<div class="container">
+	
+		<div class="row col-md-12">
+			<div th:each="c : ${productos}">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title" th:text="${c.nombre}">Nombre</h5>
+							<p class="card-text" th:text="${'Cod. de producto - ' + c.codigo}">Id</p>
+							<p class="card-text" th:text="${'Precio - ' + c.precio}">Precio</p>
+							
+									
+						</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+
 </body>
+
 </html>

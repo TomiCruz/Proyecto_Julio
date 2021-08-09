@@ -31,10 +31,10 @@ public class VentaController {
 	@Autowired
 	Producto productoSelec;
 	
-	@GetMapping("/producto/ventas")
+	@GetMapping("/agregarVenta")
 	public String cargarVentas(Model model) {
 		model.addAttribute("productos", productoService.obtenerTodosProductos());
-		return("ventas");
+		return("InterfazCliente");
 	}
 	
 	@GetMapping("/producto/vender/{codigo}")	
@@ -46,12 +46,14 @@ public class VentaController {
 			venta.setProducto(productoSelec);
 			model.addAttribute("venta",venta);
 			model.addAttribute("usuarios", usuarioService.listarUsuario());
+			model.addAttribute("usuarios", usuarioService.obtenerTodosUsuarios());
+			
 			
 		}
 		catch (Exception e) {
 			model.addAttribute("formUsuarioErrorMessage",e.getMessage());		
 		}		
-		return "InterfazCliente";
+		return "ventas";
 	}
 	
 	@PostMapping("/producto/vender")
@@ -62,10 +64,10 @@ public class VentaController {
 	}
 	
 	//listarProductos
-	@GetMapping("/LproductosVenta")
-	public String mostrarProductos(Model model){
-		model.addAttribute ("productos",productoService.listarProducto());
-		return "listaVenta";	
-	}	
+//		@GetMapping("/LproductosVenta")
+//		public String mostrarProductos(Model model){
+//		model.addAttribute ("productos",ventaService.listarVenta());
+//		return "listaVenta";	
+	//}	
 
 }

@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unju.edm.modelo.Producto;
 import ar.edu.unju.edm.modelo.Venta;
+import ar.edu.unju.edm.repository.IProductoRepository;
 import ar.edu.unju.edm.repository.IVentaRepository;
 
 @Service
@@ -17,6 +19,10 @@ public class IVentaServiceImp implements IVentaService{
 	@Autowired
 	IVentaRepository iVenta;
 
+	@Autowired
+	IProductoRepository iProducto;
+	
+	
 	@Override
 	public void guardarVenta(Venta unaVenta) {
 		// TODO Auto-generated method stub
@@ -38,10 +44,7 @@ public class IVentaServiceImp implements IVentaService{
 	@Override
 	public List<Venta> listarVenta() {
 		// TODO Auto-generated method stub
-		return null;
+		return (List<Venta>) iVenta.findAll();//listado de todos los productos
 	}
-	
-
-	
-	
+			
 }
