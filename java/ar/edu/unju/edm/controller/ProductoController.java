@@ -26,6 +26,7 @@ public class ProductoController {
 	@GetMapping("/cargarProducto")
 	public String agregarP(Model model) {
 		model.addAttribute("productoF", new Producto());
+		model.addAttribute("productos", productoService.obtenerTodosProductos());
 		return "agregarProducto";
 	}
 	
@@ -48,7 +49,7 @@ public class ProductoController {
 		Producto productoEncontrada = productoService.encontrarProducto(id);
 		model.addAttribute("productoF", productoEncontrada);
 		model.addAttribute("editMode","true");
-		return "listaProductos";
+		return "editarProducto";
 	}
 	
 	@PostMapping("/Mproducto")
@@ -56,6 +57,7 @@ public class ProductoController {
 		if(result.hasErrors()) {			
 			model.addAttribute("productoF", producto);
 			model.addAttribute("editMode", "true");
+			model.addAttribute("productos",productoService.listarProducto());
 		}else {
 			try {
 				System.out.println(producto.getId());
@@ -71,7 +73,7 @@ public class ProductoController {
 			}
 		}
 
-		model.addAttribute("productos",productoService.listarProducto());
+		
 		return "redirect:/Lproductos";
 	}
 	
@@ -85,7 +87,7 @@ public class ProductoController {
 	//cancelar productos
 	@GetMapping("/cancelarProducto")
 	public String cancelarEditarProducto(ModelMap model) {
-		return "redirect:/Vproductos";	
+		return "redirect:/Admin";	
 	}
 }
 

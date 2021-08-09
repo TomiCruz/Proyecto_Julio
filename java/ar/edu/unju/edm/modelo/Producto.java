@@ -34,7 +34,6 @@ public class Producto implements Serializable {
     private Integer cantProductos;
 
 	public Producto() {
-		
 	}
 	
 

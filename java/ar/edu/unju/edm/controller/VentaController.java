@@ -32,33 +32,40 @@ public class VentaController {
 	Producto productoSelec;
 	
 	@GetMapping("/producto/ventas")
-	public String cargarVentas(Model model) {					//??
-		//model.addAttribute("unProducto", productoService.guardar();
-		model.addAttribute("productos", productoService.listarProducto());
+	public String cargarVentas(Model model) {
+		model.addAttribute("productos", productoService.obtenerTodosProductos());
 		return("ventas");
 	}
 	
 	@GetMapping("/producto/vender/{codigo}")	
-	public String realizarVenta(Model model, @PathVariable(name="codigo") Integer codigo) throws Exception {
-		Venta venta = new Venta();	
-		
-		try {												  //??
-			productoSelec = productoService.encontrarProducto(null);
+	public String realizarVenta(Model model, @PathVariable(name="codigo") long codigo) throws Exception {
+		Venta venta = new Venta();		
+		try {		
+			productoSelec = productoService.encontrarProducto(codigo);			
 			venta = ventaService.crearVenta();		
-			//venta.getProductos(productoSelec);
-			model.addAttribute("venta", venta);
-			model.addAttribute("usuarios",usuarioService.listarUsuario());
+			venta.setProducto(productoSelec);
+			model.addAttribute("venta",venta);
+			model.addAttribute("usuarios", usuarioService.listarUsuario());
+			
 		}
 		catch (Exception e) {
 			model.addAttribute("formUsuarioErrorMessage",e.getMessage());		
 		}		
-		return "venta-modal";
+		return "InterfazCliente";
 	}
 	
 	@PostMapping("/producto/vender")
-	public String guardarNuevoProducto(@ModelAttribute("venta") Venta unaVenta, Model model) {
+	public String guardarNuevoProducto(@ModelAttribute("venta") Venta unaVenta, Model model){
+		System.out.println(unaVenta.getIdVenta());
 		ventaService.guardarVenta(unaVenta);
-		
 		return("redirect:/producto/ventas");
 	}
+	
+	//listarProductos
+	@GetMapping("/LproductosVenta")
+	public String mostrarProductos(Model model){
+		model.addAttribute ("productos",productoService.listarProducto());
+		return "listaVenta";	
+	}	
+
 }

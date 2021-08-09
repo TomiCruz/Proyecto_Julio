@@ -28,18 +28,22 @@ public class UsuarioController {
 	
 	@PostMapping("/guardarUsuario")
 	public String guardarU(@ModelAttribute Usuario usuario, Model model) {
+		//verificardni
 		usuarioService.guardar(usuario);
 		model.addAttribute("usuarioF", usuario);
 		return "redirect:/cargarUsuario";
 	} 
 	
+ 
 	@GetMapping("/Lusuarios")
 	public String mostrarUsuarios(Model model){
-		model.addAttribute("usuario", usuarioService.listarUsuario());
+		model.addAttribute("usuarios", usuarioService.listarUsuario());
 		return "listaUsuarios";	
 		
 	}
 	
+
+	//modificar
 	@GetMapping("/EDusuario/{id}")
 	public String ObtenerFormularioEditarUsuario(Model model, @PathVariable(name="id") Long id) throws Exception {
 		Usuario usuarioEncontrado = usuarioService.encontrarUsuario(id);
@@ -48,17 +52,12 @@ public class UsuarioController {
 		return "editarUsuario";
 	}
 	
-	@GetMapping("/Elusuario/{id}")
-	public String eliminar(@PathVariable Long id, Model model) {
-		usuarioService.eliminar(id);
-		return "redirect:/Lusuarios";
-	}
-	
 	@PostMapping("/Musuario")
 	public String postEditarUsuario(@ModelAttribute("usuarioF") Usuario usuario, BindingResult result, ModelMap model) {
 		if(result.hasErrors()) {
 			model.addAttribute("usuarioF", usuario);
 			model.addAttribute("editMode", "true");
+			model.addAttribute("usuarios", usuarioService.listarUsuario());
 		}else {
 			try {
 				System.out.println(usuario.getId());
@@ -73,7 +72,21 @@ public class UsuarioController {
 			}
 		}
 
-		model.addAttribute("usuarios", usuarioService.listarUsuario());
+		
 		return "redirect:/Lusuarios";
 	}
+	
+	
+	//eliminar
+	@GetMapping("/Elusuario/{id}")
+	public String eliminar(@PathVariable Long id, Model model) {
+		usuarioService.eliminar(id);
+		return "redirect:/Lusuarios";
+	}
+	
+	@GetMapping("/cancelar")
+	public String cancelar() {
+		return "redirect:/Admin";
+	}
+	
 }

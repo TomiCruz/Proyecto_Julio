@@ -19,13 +19,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private AutenticacionSuccessHandler autenticacion;
 
 	String[] resources = new String[] { "/include/**", "/css/**", "/icons/**", "/img/**", "/js/**", "/layer/**",
-			"/webjars/<<**" };
+			"/webjars/**" };
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 		.antMatchers(resources).permitAll()
 		.antMatchers("/","/home").permitAll()
+		.antMatchers("/cargarUsuario","/guardarUsuario","/Lusuarios",						//Usuario
+					 "/EDusuario/{id}","/Musuario","/Elusuario/{id}","/cancelar",			//Usuario
+					 "/cargarProducto","/guardarProducto","/Lproductos",					//Producto
+					 "/EDproducto/{id}","/Mproducto","/Elproducto/{id}","/cancelarProducto",//Producto
+					 "/Admin") 																	
+		.hasAuthority("Admin")
+		
+		.antMatchers("/Client","/producto/ventas","/producto/vender/{id}","/LproductosVenta") 
+		.hasAuthority("Client")
+		
+						
 		.anyRequest().authenticated()
 		.and()
 			.formLogin()

@@ -3,6 +3,7 @@ package ar.edu.unju.edm.modelo;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,11 +28,11 @@ public class Venta implements Serializable{
 	@Column
 	private Integer idVenta;
 	
-	@ManyToOne	
+	@ManyToOne(cascade = CascadeType.ALL)	
 	@JoinColumn(name = "idProducto")
     private Producto producto;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 	

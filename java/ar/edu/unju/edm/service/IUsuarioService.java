@@ -15,4 +15,5 @@ public interface IUsuarioService {
 	public Usuario modificar(Usuario unUsuario) throws Exception;
 	public Usuario encontrarUsuario(Long id) throws Exception;
 	
+	
 }

@@ -1,48 +1,78 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link th:href="@{../style.css}" rel="stylesheet" type="text/css" href="../static/style.css">
-	<link th:href="@{../bootstrap.css}" rel="stylesheet" type="text/css" href="../static/bootstrap.css">
+  <link th:href="@{../css/style.css}" rel="stylesheet" type="text/css" href="../static/css/style.css">
+	<link th:href="@{../css/bootstrap.css}" rel="stylesheet" type="text/css" href="../static/css/bootstrap.css">
 	<meta charset=UTF-8>
 <title>Agregar</title>
 </head>
 <body>
  <div class = "container">
-<form  th:object=${usuarioF} th:action="@{/guardarUsuario}" method="post">
-	<h2>Nuevo Usuario</h2>
-	  		
-	  		<div>
-				<input  class="form-control" name="dni"
-					placeholder="Ingrese dni" required="required" th:field = "*{dni}">
+<h1>Crear Usuario</h1>
+		<form id="formProducto"  th:object=${usuarioF} th:action="${editMode}?@{/Musuario}:@{/guardarUsuario}" method="post">
+		<input type="hidden" th:field="*{id}" th:if="${editMode}" >
+		
+		
+		<div class="form-group row">
+				<label for="dni" class="col-sm-2 col-form-label">Documento</label>
+				<div class="col-sm-10">
+					<input type="text" id="dni" th:field="*{dni}"
+						class="form-control">
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" >Document Error </div>
+				</div>
 			</div>
-	  		<div>
-				<input type="text" class="form-control" name="Nombre"
-					placeholder="Nombre	" required="required" th:field = "*{nombre}">
+		
+		<div class="form-group row">
+				<label for="nombre" class="col-sm-2 col-form-label ">Nombre</label>
+				<div class="col-sm-10">
+					<input type="text" id="nombre" th:field="*{nombre}" 
+					class="form-control">
+					<div class="alert alert-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" >Name Error </div>
+					
+				</div>
 			</div>
-			<div>
-				<input type="text" class="form-control" name="Apellido"
-					placeholder="Apellido" required="required" th:field = "*{apellido}">
+		
+	  		<div class="form-group row">
+				<label for="apellido" class="col-sm-2 col-form-label ">Apellido</label>
+				<div class="col-sm-10">
+					<input type="text" id="apellido" th:field="*{apellido}" 
+					class="form-control">
+					<div class="alert alert-danger" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}" >Name Error </div>
+					
+				</div>
 			</div>
 			
-			<div>
-				<input type="password" class="form-control" name="password"
-					placeholder="Password" required="required" th:field =  "*{password}">
-			</div>
-			
-			<div class="form-group">
-						<label>Tipo</label> <br> <select th:field="*{tipo}"class="form-select form-select-lg mb-3">
+			<div class="form-group row">
+		<label for="password" class="col-sm-2 col-form-label ">Contraseña</label>
+		<div class="col-sm-10">
+			<input type="password" id="password"th:field="*{password}"
+				class="form-control">
+				<div class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" >password Error </div>
+		</div>
+	</div>		
+					<div class="form-group row">
+				<label for="tipo" class="col-sm-2 col-form-label">Tipo</label>
+				<div class="col-sm-10">
+					<select id="tipo" th:field="*{tipo}" class="form-control">
 						<option th:value="Admin"th:text="Admin"></option>
 						<option th:value="Client"th:text="Client"></option>
-						</select>
+					</select>
+				</div>
+			</div>
+			<div>
+				<div class="form-group row">
+					<div class="col-sm-6">
+						<input type="submit" class="btn btn-success btn-block"
+							th:value="${editMode}?'Modificar Usuario':'Crear Usuario'">
 					</div>
-			<button type="submit" class="btn btn-primary">Guardar Usuario</button>
-</form>
-</div>
-<div>
-<hr>
-<form action="Admin" class="form-group">
-				<input type="submit" class="btn btn-lg btn-primary btn-block" value="Cancelar">
-		</form>
+					<div class="col-sm-6">
+						<a class="btn btn-secondary btn-block" th:href="@{'/cancelar'}">Cancelar</a>
+					</div>
+				</div>
+
+			</div>
+	</form>
+	
 </div>
 </body>
 </html>

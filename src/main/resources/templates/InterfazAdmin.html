@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<link th:href="@{../style.css}" rel="stylesheet" type="text/css" href="../static/style.css">
-	<link th:href="@{../bootstrap.css}" rel="stylesheet" type="text/css" href="../static/bootstrap.css">
+	<link th:href="@{../css/style.css}" rel="stylesheet" type="text/css" href="../static/css/style.css">
+	<link th:href="@{../css/bootstrap.css}" rel="stylesheet" type="text/css" href="../static/css/bootstrap.css">
 	<meta charset=UTF-8>
 <title>Admin</title>
 </head>
@@ -12,13 +12,13 @@
 			<input type="submit" class="btn btn-outline-primary"
 				value="Agregar Producto">
 		</form>
-		<form action="cargarUsuario" class="form-group">
-			<input type="submit" class="btn btn-outline-primary"
-				value="Agregar Usuario">
-		</form>
 		<form action="Lproductos" class="form-group">
 			<input type="submit" class="btn btn-outline-primary"
 				value="Mostrar Productos">
+		</form>
+		<form action="cargarUsuario" class="form-group">
+			<input type="submit" class="btn btn-outline-primary"
+				value="Agregar Usuario">
 		</form>
 		<form action="Lusuarios" class="form-group">
 			<input type="submit" class="btn btn-outline-primary"

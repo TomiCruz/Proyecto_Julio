@@ -11,11 +11,6 @@
 
 <body>
 	<br >
-	<div class="container mt-5">
-		<a type="button" class="btn btn-primary" th:href="@{/cargarProducto}">Agregar
-			Producto?</a>
-		<hr>
-
 		<table class="table table-success table-striped">
 			<thead  class="thead-dark">
 				<tr>
@@ -23,21 +18,18 @@
 					<th scope="col">Nombre</th>
 					<th scope="col">Precio</th>
 					<th scope="col">Disponibilidad</th>
-					<th scope="col">Editar</th>
-					<th scope="col">Eliminar</th>
-
+					
 				</tr>
 			</thead>
 			
 			<tbody>
 
-				<tr th:each="producto:${producto}">
-					<td th:text="${producto.codigo}"></td>
-					<td th:text="${producto.nombre}"></td>
-					<td th:text="${producto.precio}"></td>
-					<td th:text="${producto.disponibilidad}"></td>
-						<td ><a type="button" class="btn btn-outline-primary" th:href="@{/EDproducto/}+ ${producto.id}" >EDITAR</a></td>
-     				    <td><a type="button" class="btn btn-outline-danger"th:href="@{/Elproducto/}+ ${producto.id}">ELIMINAR</a></td>
+				<tr th:each="productos:${productos}">
+					<td th:text="${productos.codigo}"></td>
+					<td th:text="${productos.nombre}"></td>
+					<td th:text="${productos.precio}"></td>
+					<td th:text="${productos.disponibilidad}"></td>
+						
 				</tr>
 
 			</tbody>
@@ -45,6 +37,6 @@
 		<div class="col-sm-6">
 						<a class="btn btn-secondary btn-block" th:href="@{'/cancelar'}">Volver</a>
 					</div>
-	</div>
+
 </body>
 </html>
