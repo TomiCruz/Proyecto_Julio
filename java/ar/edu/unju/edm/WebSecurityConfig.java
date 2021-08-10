@@ -26,17 +26,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 		.antMatchers(resources).permitAll()
 		.antMatchers("/","/home").permitAll()
-		.antMatchers("/cargarUsuario","/guardarUsuario","/Lusuarios",						//Usuario
-					 "/EDusuario/{id}","/Musuario","/Elusuario/{id}","/cancelar",			//Usuario
-					 "/cargarProducto","/guardarProducto","/Lproductos",					//Producto
-					 "/EDproducto/{id}","/Mproducto","/Elproducto/{id}","/cancelarProducto",//Producto
-					 "/Admin") 																	
+		.antMatchers("/cargarProducto", "/guardarProducto", "/Lproductos", "/EDproducto/{id}", "/Mproducto",
+				"/EDbarrio/{id}", "/Lusuarios", "/guardarUsuario", "/cargarUsuario", "/EDusuario/{id}",
+				"/Elusuario/{id}", "/Musuario/", "/cancelarProducto","/cancelar")
 		.hasAuthority("Admin")
 		
-		.antMatchers("/Client","/agregarVenta","/producto/vender/{id}","/LproductosVenta") 
+		.antMatchers("/listaCompras","/comprar")
 		.hasAuthority("Client")
 		
-						
 		.anyRequest().authenticated()
 		.and()
 			.formLogin()

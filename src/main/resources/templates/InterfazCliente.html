@@ -5,81 +5,18 @@
 	<link th:href="@{../css/bootstrap.css}" rel="stylesheet" type="text/css" href="../static/css/bootstrap.css">
 	<meta charset=UTF-8>
 <meta charset="ISO-8859-1">
-<title>Ventas</title>
+<title>Cliente</title>
 </head>
 <body>
-<div class="col-12">
-        <h2>Vender</h2>
-        
-       
-        <form th:object="${producto}" th:action="@{/agregarVenta}" method="post">
-            <div class="form-group">
-                <label for="codigo">Codigo de barras</label>
-              
-            </div>
-        </form>
-       
-        <h1 th:text="${'Total: ' + cantidad}"></h1>
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Codigo</th>
-                    <th>Precio</th>
-                    <th>Cantidad</th>
-                    <th>Total</th>
-                  
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="producto : ${producto}">
-                    <td th:text="${producto.nombre}"></td>
-                    <td th:text="${producto.codigo}"></td>
-                    <td th:text="${producto.precio}"></td>
-                    <td th:text="${producto.cantidad}"></td>
-                    <td th:text="${producto.total}"></td>
-                    <td>
-                        
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-  
-
- </div>
-
-
-	<!--  <table class="table table-success table-striped">
-			<thead  class="thead-dark">
-				<tr>
-					<th scope="col">Codigo</th>
-					<th scope="col">Nombre</th>
-					<th scope="col">Precio</th>
-					<th scope="col">Disponibilidad</th>
-					
-				</tr>
-			</thead>
-			<tbody>
-
-				<tr th:each="p:${productos}">
-					<td th:text="${p.codigo}"></td>
-					<td th:text="${p.nombre}"></td>
-					<td th:text="${p.precio}"></td>
-					<td th:text="${p.disponibilidad}"></td>
-						
-						
-				</tr>
-
-			</tbody>
-		</table>
-	
+	<div class="form-group">
+	<form action="comprar" class="form-group">
+			<input type="submit" class="btn btn-outline-primary"
+				value="Comprar">
+		</form>
 		<form action="login" class="form-group" id="formCerrarSesion">
 			<input type="submit" class="btn btn-outline-primary"
-				value="Cerrar Sesion">
-		</form>
-		-->
+				value="Volver">
+	</form>	
+    </div>
 </body>
 </html>
