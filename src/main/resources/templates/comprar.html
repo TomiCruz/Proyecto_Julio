@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link th:href="@{../css/style.css}" rel="stylesheet" type="text/css" href="../static/css/style.css">
+	<link th:href="@{../css/bootstrap.css}" rel="stylesheet" type="text/css" href="../static/css/bootstrap.css">
+	<meta charset=UTF-8>
+<title>Login</title>
+</head>
+<body class="container">
+	
+	<div class="col-12">
+
+		<form id="compraNueva" th:object="${compraNueva}" th:action="${comprar}" method="post">
+					<div class="form-group col-md-6">
+						<label><font size="6">Elige el producto para comprar:</font> </label>
+				
+								<font size="5"><select th:field="*{producto.id}" class="form-select form-select-lg mb-3">
+				
+						</select></font>
+					</div>
+							
+						<button type="submit" class="btn btn-success btn-block">
+				<div value="Guardar">Comprar</div>
+			</button>
+				
+				</form><br>
+			<div class="table">
+			<h3>Productos Disponibles</h3>
+				<table class="table">
+				<thead  class="thead-dark">
+				    <tr>
+				      
+				      <th scope="col">Nombre del Producto</th>
+				      <th scope="col">Disponibilidad</th>
+				      <th scope="col">Precio</th>
+				    </tr>   
+				</thead>
+					<tr th:each="producto : ${productos}">
+						
+						<td th:text="${producto.nombre}"></td>
+						<td th:text="${producto.disponibilidad}"></td>
+						<td th:text="${producto.precio}"></td>
+					</tr>
+				</table>
+			
+				<br>
+			
+			<form action="comprar" class="form-group">
+					<input type="submit"
+						class="btn btn-lg btn-primary btn-block btn btn-dark"
+						value="Volver">
+				</form>
+	</div></div>
+</body>
+</html>
